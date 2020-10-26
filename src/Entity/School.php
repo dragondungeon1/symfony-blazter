@@ -1,0 +1,95 @@
+<?php
+
+namespace App\Entity;
+
+use App\Repository\SchoolRepository;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity(repositoryClass=SchoolRepository::class)
+ */
+class School
+{
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $created_at;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Niveau::class, inversedBy="schools")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $Niveau;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updated_at;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $created_at): self
+    {
+        $this->created_at = $created_at;
+//        $this->setCreatedAt(new \DateTime('now'));
+
+        return $this;
+    }
+
+    public function getNiveau(): ?Niveau
+    {
+        return $this->Niveau;
+    }
+
+    public function setNiveau(?Niveau $Niveau): self
+    {
+        $this->Niveau = $Niveau;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updated_at): self
+    {
+        $this->updated_at = $updated_at;
+//        $this->setUpdatedAt(new \DateTime('now'));
+
+        return $this;
+    }
+}

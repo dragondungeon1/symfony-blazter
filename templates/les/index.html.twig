@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les index{% endblock %}
+
+{% block body %}
+    <h1>Les index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for le in les %}
+            <tr>
+                <td>{{ le.id }}</td>
+                <td>{{ le.name }}</td>
+                <td>
+                    <a href="{{ path('les_show', {'id': le.id}) }}">show</a>
+                    <a href="{{ path('les_edit', {'id': le.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('les_new') }}">Create new</a>
+{% endblock %}

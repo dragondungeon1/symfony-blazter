@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}KlasHasLes{% endblock %}
+
+{% block body %}
+    <h1>KlasHasLes</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ klas_has_le.id }}</td>
+            </tr>
+            <tr>
+                <th>Vervallen</th>
+                <td>{{ klas_has_le.vervallen ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Opvang</th>
+                <td>{{ klas_has_le.opvang ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('klas_has_les_index') }}">back to list</a>
+
+    <a href="{{ path('klas_has_les_edit', {'id': klas_has_le.id}) }}">edit</a>
+
+    {{ include('klas_has_les/_delete_form.html.twig') }}
+{% endblock %}

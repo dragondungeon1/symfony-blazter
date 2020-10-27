@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SchoolRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -37,6 +39,16 @@ class School
      * @ORM\Column(type="datetime")
      */
     private $updated_at;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Klas::class, mappedBy="school_id")
+     */
+    private $school_id;
+
+    public function __construct()
+    {
+        $this->school_id = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -89,6 +101,37 @@ class School
     {
         $this->updated_at = $updated_at;
 //        $this->setUpdatedAt(new \DateTime('now'));
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Klas[]
+     */
+    public function getSchoolId(): Collection
+    {
+        return $this->school_id;
+    }
+
+    public function addSchoolId(Klas $schoolId): self
+    {
+        if (!$this->school_id->contains($schoolId)) {
+            $this->school_id[] = $schoolId;
+            $schoolId->setSchoolId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSchoolId(Klas $schoolId): self
+    {
+        if ($this->school_id->contains($schoolId)) {
+            $this->school_id->removeElement($schoolId);
+            // set the owning side to null (unless already changed)
+            if ($schoolId->getSchoolId() === $this) {
+                $schoolId->setSchoolId(null);
+            }
+        }
 
         return $this;
     }

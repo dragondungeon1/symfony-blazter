@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}KlasHasLes index{% endblock %}
+
+{% block body %}
+    <h1>KlasHasLes index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Vervallen</th>
+                <th>Opvang</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for klas_has_le in klas_has_les %}
+            <tr>
+                <td>{{ klas_has_le.id }}</td>
+                <td>{{ klas_has_le.vervallen ? 'Yes' : 'No' }}</td>
+                <td>{{ klas_has_le.opvang ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('klas_has_les_show', {'id': klas_has_le.id}) }}">show</a>
+                    <a href="{{ path('klas_has_les_edit', {'id': klas_has_le.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('klas_has_les_new') }}">Create new</a>
+{% endblock %}

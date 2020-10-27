@@ -20,6 +20,8 @@ class SchoolController extends AbstractController
      */
     public function index(SchoolRepository $schoolRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         return $this->render('school/index.html.twig', [
             'schools' => $schoolRepository->findAll(),
         ]);

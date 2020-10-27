@@ -37,7 +37,7 @@ security:
          - { path: ^/admin, roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN] }
          - { path: ^/profile, roles: ROLE_USER }
          - { path: /default, roles:  [IS_AUTHENTICATED_FULLY]}
-         - { path: /niveau, roles:  [ROLE_ADMIN, IS_AUTHENTICATED_FULLY]}
-         - { path: /school, roles:  [ROLE_ADMIN, IS_AUTHENTICATED_FULLY]}
+         - { path: ^/niveau, roles:  ROLE_ADMIN}
+         - { path: ^/school, roles:  ROLE_USER}
 
 

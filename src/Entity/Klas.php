@@ -34,9 +34,21 @@ class Klas
      */
     private $klas_id;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Klas::class, inversedBy="niveau")
+     */
+    private $niveau_id;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Klas::class, mappedBy="niveau_id")
+     */
+    private $niveau;
+
+
     public function __construct()
     {
         $this->klas_id = new ArrayCollection();
+        $this->niveau = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -105,4 +117,49 @@ class Klas
         // to show the id of the Category in the select
         // return $this->id;
     }
+
+    public function getNiveauId(): ?self
+    {
+        return $this->niveau_id;
+    }
+
+    public function setNiveauId(?self $niveau_id): self
+    {
+        $this->niveau_id = $niveau_id;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|self[]
+     */
+    public function getNiveau(): Collection
+    {
+        return $this->niveau;
+    }
+
+    public function addNiveau(self $niveau): self
+    {
+        if (!$this->niveau->contains($niveau)) {
+            $this->niveau[] = $niveau;
+            $niveau->setNiveauId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNiveau(self $niveau): self
+    {
+        if ($this->niveau->contains($niveau)) {
+            $this->niveau->removeElement($niveau);
+            // set the owning side to null (unless already changed)
+            if ($niveau->getNiveauId() === $this) {
+                $niveau->setNiveauId(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 }

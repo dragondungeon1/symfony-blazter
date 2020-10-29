@@ -25,14 +25,15 @@ class Niveau
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity=School::class, mappedBy="Niveau")
+     * @ORM\OneToMany(targetEntity=Klas::class, mappedBy="niveau_id")
      */
-    private $schools;
+    private $niveau_id;
 
     public function __construct()
     {
-        $this->schools = new ArrayCollection();
+        $this->niveau_id = new ArrayCollection();
     }
+
 
     public function getId(): ?int
     {
@@ -51,38 +52,39 @@ class Niveau
         return $this;
     }
 
-    /**
-     * @return Collection|School[]
-     */
-    public function getSchools(): Collection
-    {
-        return $this->schools;
+
+    public function __toString() {
+        return $this->getName();
     }
 
-    public function addSchool(School $school): self
+    /**
+     * @return Collection|Klas[]
+     */
+    public function getNiveauId(): Collection
     {
-        if (!$this->schools->contains($school)) {
-            $this->schools[] = $school;
-            $school->setNiveau($this);
+        return $this->niveau_id;
+    }
+
+    public function addNiveauId(Klas $niveauId): self
+    {
+        if (!$this->niveau_id->contains($niveauId)) {
+            $this->niveau_id[] = $niveauId;
+            $niveauId->setNiveauId($this);
         }
 
         return $this;
     }
 
-    public function removeSchool(School $school): self
+    public function removeNiveauId(Klas $niveauId): self
     {
-        if ($this->schools->contains($school)) {
-            $this->schools->removeElement($school);
+        if ($this->niveau_id->contains($niveauId)) {
+            $this->niveau_id->removeElement($niveauId);
             // set the owning side to null (unless already changed)
-            if ($school->getNiveau() === $this) {
-                $school->setNiveau(null);
+            if ($niveauId->getNiveauId() === $this) {
+                $niveauId->setNiveauId(null);
             }
         }
 
         return $this;
-    }
-
-    public function __toString() {
-        return $this->getName();
     }
 }

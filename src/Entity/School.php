@@ -30,12 +30,6 @@ class School
     private $created_at;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Niveau::class, inversedBy="schools")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $Niveau;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $updated_at;
@@ -76,18 +70,6 @@ class School
     {
         $this->created_at = $created_at;
 //        $this->setCreatedAt(new \DateTime('now'));
-
-        return $this;
-    }
-
-    public function getNiveau(): ?Niveau
-    {
-        return $this->Niveau;
-    }
-
-    public function setNiveau(?Niveau $Niveau): self
-    {
-        $this->Niveau = $Niveau;
 
         return $this;
     }

@@ -37,6 +37,11 @@ class KlasHasLes
      */
     private $les_id;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Rooster::class, inversedBy="rooster")
+     */
+    private $rooster_id;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +91,18 @@ class KlasHasLes
     public function setLesId(?Les $les_id): self
     {
         $this->les_id = $les_id;
+
+        return $this;
+    }
+
+    public function getRoosterId(): ?Rooster
+    {
+        return $this->rooster_id;
+    }
+
+    public function setRoosterId(?Rooster $rooster_id): self
+    {
+        $this->rooster_id = $rooster_id;
 
         return $this;
     }

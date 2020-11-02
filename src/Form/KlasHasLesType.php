@@ -16,6 +16,7 @@ class KlasHasLesType extends AbstractType
             ->add('opvang')
             ->add('klas_id')
             ->add('les_id')
+            ->add('rooster_id')
         ;
     }
 

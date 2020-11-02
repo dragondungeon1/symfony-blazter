@@ -39,6 +39,11 @@ class School
      */
     private $school_id;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Country::class, inversedBy="country")
+     */
+    private $country;
+
     public function __construct()
     {
         $this->school_id = new ArrayCollection();
@@ -114,6 +119,18 @@ class School
                 $schoolId->setSchoolId(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCountry(): ?Country
+    {
+        return $this->country;
+    }
+
+    public function setCountry(?Country $country): self
+    {
+        $this->country = $country;
 
         return $this;
     }

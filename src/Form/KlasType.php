@@ -13,6 +13,7 @@ class KlasType extends AbstractType
     {
         $builder
             ->add('name')
+            ->add('niveau_id')
         ;
     }
 

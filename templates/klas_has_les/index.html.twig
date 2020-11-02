@@ -11,7 +11,9 @@
                 <th>Id</th>
                 <th>Vervallen</th>
                 <th>Opvang</th>
+                <th>rooster ID</th>
                 <th>actions</th>
+
             </tr>
         </thead>
         <tbody>
@@ -20,6 +22,8 @@
                 <td>{{ klas_has_le.id }}</td>
                 <td>{{ klas_has_le.vervallen ? 'Yes' : 'No' }}</td>
                 <td>{{ klas_has_le.opvang ? 'Yes' : 'No' }}</td>
+                <td>{{ klas_has_le.roosterId}}</td>
+
                 <td>
                     <a href="{{ path('klas_has_les_show', {'id': klas_has_le.id}) }}">show</a>
                     <a href="{{ path('klas_has_les_edit', {'id': klas_has_le.id}) }}">edit</a>

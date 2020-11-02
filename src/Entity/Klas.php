@@ -39,10 +39,10 @@ class Klas
      */
     private $niveau_id;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Klas::class, mappedBy="niveau_id")
-     */
-    private $niveau;
+//    /**
+//     * @ORM\OneToMany(targetEntity=Klas::class, mappedBy="niveau_id")
+//     */
+//    private $niveau;
 
 
     public function __construct()
@@ -130,36 +130,36 @@ class Klas
         return $this;
     }
 
-    /**
-     * @return Collection|self[]
-     */
-    public function getNiveau(): Collection
-    {
-        return $this->niveau;
-    }
-
-    public function addNiveau(self $niveau): self
-    {
-        if (!$this->niveau->contains($niveau)) {
-            $this->niveau[] = $niveau;
-            $niveau->setNiveauId($this);
-        }
-
-        return $this;
-    }
-
-    public function removeNiveau(self $niveau): self
-    {
-        if ($this->niveau->contains($niveau)) {
-            $this->niveau->removeElement($niveau);
-            // set the owning side to null (unless already changed)
-            if ($niveau->getNiveauId() === $this) {
-                $niveau->setNiveauId(null);
-            }
-        }
-
-        return $this;
-    }
+//    /**
+//     * @return Collection|self[]
+//     */
+//    public function getNiveau(): Collection
+//    {
+//        return $this->niveau;
+//    }
+//
+//    public function addNiveau(self $niveau): self
+//    {
+//        if (!$this->niveau->contains($niveau)) {
+//            $this->niveau[] = $niveau;
+//            $niveau->setNiveauId($this);
+//        }
+//
+//        return $this;
+//    }
+//
+//    public function removeNiveau(self $niveau): self
+//    {
+//        if ($this->niveau->contains($niveau)) {
+//            $this->niveau->removeElement($niveau);
+//            // set the owning side to null (unless already changed)
+//            if ($niveau->getNiveauId() === $this) {
+//                $niveau->setNiveauId(null);
+//            }
+//        }
+//
+//        return $this;
+//    }
 
 
 }

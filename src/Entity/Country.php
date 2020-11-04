@@ -29,9 +29,15 @@ class Country
      */
     private $country;
 
+    /**
+     * @ORM\OneToMany(targetEntity=School::class, mappedBy="countryID")
+     */
+    private $Country;
+
     public function __construct()
     {
         $this->country = new ArrayCollection();
+        $this->Country = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -80,5 +86,10 @@ class Country
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return (string) $this->name;
     }
 }

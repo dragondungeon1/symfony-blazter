@@ -12,6 +12,11 @@
                 <th>Name</th>
                 <th>Created_at</th>
                 <th>actions</th>
+                <th>Tuitition</th>
+                <th>Country</th>
+                <th>Money</th>
+
+
             </tr>
         </thead>
         <tbody>
@@ -25,6 +30,10 @@
                     <a href="{{ path('school_show', {'id': school.id}) }}">show</a>
                     <a href="{{ path('school_edit', {'id': school.id}) }}">edit</a>
                 </td>
+                <td>{{ school.Tuitition }}</td>
+                <td>{{ school.CountryID }}</td>
+                <td>{{ valuta(school.CountryID, school.Tuitition)}}</td>
+
             </tr>
         {% else %}
             <tr>

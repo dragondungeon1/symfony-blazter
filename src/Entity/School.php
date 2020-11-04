@@ -39,10 +39,16 @@ class School
      */
     private $school_id;
 
+
     /**
-     * @ORM\ManyToOne(targetEntity=Country::class, inversedBy="country")
+     * @ORM\Column(type="float")
      */
-    private $country;
+    private $Tuitition;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Country::class, inversedBy="Country")
+     */
+    private $countryID;
 
     public function __construct()
     {
@@ -123,15 +129,33 @@ class School
         return $this;
     }
 
-    public function getCountry(): ?Country
+    public function getTuitition(): ?float
     {
-        return $this->country;
+        return $this->Tuitition;
     }
 
-    public function setCountry(?Country $country): self
+    public function setTuitition(float $Tuitition): self
     {
-        $this->country = $country;
+        $this->Tuitition = $Tuitition;
 
         return $this;
     }
+
+    public function getCountryID(): ?Country
+    {
+        return $this->countryID;
+    }
+
+    public function setCountryID(?Country $countryID): self
+    {
+        $this->countryID = $countryID;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return (string) $this->name;
+    }
 }
+

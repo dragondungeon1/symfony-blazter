@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Twig;
+
 use Monolog\Handler\IFTTTHandler;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
@@ -34,16 +35,17 @@ class ValutaExtension extends AbstractExtension
         $courseEU = 1;
         $course = $courseUSA;
 
-        if ($country == 'USA') {
-            $course = $courseUSA;
-
-        } elseif ($country == 'UK') {
-            $course = $courseUK;
-
-        } elseif ($country == 'EU') {
-            $course = $courseEU;
-
-        }
+        switch ($country){
+            case 'USA':
+                 $course = $courseUSA;
+                break;
+            case 'UK':
+                 $course = $courseUK;
+                break;
+            case 'EU':
+                 $course = $courseEU;
+                break;
+                   }
         $CalcTuitition = $Tuitition * $course;
         return $CalcTuitition;
     }

@@ -34,13 +34,13 @@ class ValutaExtension extends AbstractExtension
         $courseEU = 1;
         $course = $courseUSA;
 
-        if ($country == '4') {
+        if ($country == 'USA') {
             $course = $courseUSA;
 
-        } elseif ($country == '2') {
+        } elseif ($country == 'UK') {
             $course = $courseUK;
 
-        } elseif ($country == '5') {
+        } elseif ($country == 'EU') {
             $course = $courseEU;
 
         }

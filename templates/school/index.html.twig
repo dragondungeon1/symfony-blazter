@@ -32,8 +32,11 @@
                 </td>
                 <td>{{ school.Tuitition }}</td>
                 <td>{{ school.CountryID }}</td>
-                <td>{{ valuta(school.CountryID, school.Tuitition)}}</td>
-
+                <td>{% if school.CountryID == 'USA' %}$
+                    {% elseif school.CountryID == 'UK' %}£
+                    {% elseif school.CountryID == 'EU' %}€
+                    {% endif %}
+                {{ valuta(school.CountryID, school.Tuitition)}}</td>
             </tr>
         {% else %}
             <tr>

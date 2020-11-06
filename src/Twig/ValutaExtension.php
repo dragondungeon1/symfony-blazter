@@ -45,10 +45,10 @@ class ValutaExtension extends AbstractExtension
             case 'EU':
                  $course = $courseEU;
                 break;
-                   }
-        $CalcTuitition = $Tuitition * $course;
+                   }$CalcTuitition = $Tuitition * $course;
         return $CalcTuitition;
     }
+
 
 
 //

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rooster index{% endblock %}
+
+{% block body %}
+    <h1>Rooster index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for rooster in roosters %}
+            <tr>
+                <td>{{ rooster.id }}</td>
+                <td>{{ rooster.start ? rooster.start|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ rooster.end ? rooster.end|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('rooster_show', {'id': rooster.id}) }}">show</a>
+                    <a href="{{ path('rooster_edit', {'id': rooster.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('rooster_new') }}">Create new</a>
+{% endblock %}

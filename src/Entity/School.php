@@ -50,9 +50,15 @@ class School
      */
     private $countryID;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Order::class, mappedBy="school")
+     */
+    private $orders;
+
     public function __construct()
     {
         $this->school_id = new ArrayCollection();
+        $this->orders = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -156,6 +162,37 @@ class School
     public function __toString()
     {
         return (string) $this->name;
+    }
+
+    /**
+     * @return Collection|Order[]
+     */
+    public function getOrders(): Collection
+    {
+        return $this->orders;
+    }
+
+    public function addOrder(Order $order): self
+    {
+        if (!$this->orders->contains($order)) {
+            $this->orders[] = $order;
+            $order->setSchool($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrder(Order $order): self
+    {
+        if ($this->orders->contains($order)) {
+            $this->orders->removeElement($order);
+            // set the owning side to null (unless already changed)
+            if ($order->getSchool() === $this) {
+                $order->setSchool(null);
+            }
+        }
+
+        return $this;
     }
 }
 

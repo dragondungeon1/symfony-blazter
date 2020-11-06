@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Rooster{% endblock %}
+
+{% block body %}
+    <h1>Edit Rooster</h1>
+
+    {{ include('rooster/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('rooster_index') }}">back to list</a>
+
+    {{ include('rooster/_delete_form.html.twig') }}
+{% endblock %}

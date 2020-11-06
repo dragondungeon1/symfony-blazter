@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CartController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! ✅</h1>
+
+    This friendly message is coming from:
+    <ul>
+        <li>Your controller at <code><a href="{{ 'C:/school/htdocs/blazter/expert2/src/Controller/CartController.php'|file_link(0) }}">src/Controller/CartController.php</a></code></li>
+        <li>Your template at <code><a href="{{ 'C:/school/htdocs/blazter/expert2/templates/cart/index.html.twig'|file_link(0) }}">templates/cart/index.html.twig</a></code></li>
+    </ul>
+</div>
+
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Created_at</th>
+            <th>actions</th>
+            <th>Tuitition</th>
+            <th>Country</th>
+            <th>Money</th>
+            <th>Order</th>
+
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for school in schools %}
+            <tr>
+                <td>{{ school.id }}</td>
+                <td>{{ school.name }}</td>
+                <td>{{ school.createdAt ? school.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+
+                <td>
+                    <a href="{{ path('school_show', {'id': school.id}) }}">show</a>
+                    <a href="{{ path('school_edit', {'id': school.id}) }}">edit</a>
+                </td>
+                <td>{{ school.Tuitition }}</td>
+                <td>{{ school.CountryID }}</td>
+                <td>{% if school.CountryID == 'USA' %}$
+                    {% elseif school.CountryID == 'UK' %}£
+                    {% elseif school.CountryID == 'EU' %}€
+                    {% endif %}
+                    {{ valuta(school.CountryID, school.Tuitition)}}</td>
+                <td><a href=""><button class="btn-primary">order</button></a></td>
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

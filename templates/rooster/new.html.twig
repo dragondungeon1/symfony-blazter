@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Rooster{% endblock %}
+
+{% block body %}
+    <h1>Create new Rooster</h1>
+
+    {{ include('rooster/_form.html.twig') }}
+
+    <a href="{{ path('rooster_index') }}">back to list</a>
+{% endblock %}

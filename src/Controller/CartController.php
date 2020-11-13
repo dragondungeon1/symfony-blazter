@@ -2,11 +2,15 @@
 
 namespace App\Controller;
 use App\Entity\Order;
+use App\Entity\User;
+use App\Form\OrderType;
 use App\Repository\SchoolRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\School;
+use Doctrine\ORM\Mapping\Id;
 use http\Env\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -40,20 +44,36 @@ class CartController extends AbstractController
         ]);
 
     }
-
-    public function order($schooldID) : \Symfony\Component\HttpFoundation\Response
+// this is the payment function
+    /**
+     * @Route("/spa", name="spa")
+     */
+    public function order()
     {
         $Order = new Order();
         $user = $this->getUser();
-        $Order->setUser($user);
-
-        $Order->setUser($user->getId());
-        $Order->setSchool($schooldID);
-
         $em = $this->getDoctrine()->getManager();
+        $user =  $em->getRepository(User::class)->find($user->getId());
+
+        $Order->setUser($user);
+        $Order->setSchool($this->session->get('school'));
+
+//        $form = $this->createForm(OrderType::class, $Order);    //please check this again
+//        $form->handleRequest($request);
+
         $em->persist($Order);
         $em->flush();
 
-        return $this->render('order/new.html.twig');
+        return $this->render('order/new.html.twig', [
+
+        ]);
     }
+    /**
+     * @Route("/check", name="school")
+     */
+    public function add(School $school){
+            $this->session->set('School' , $school);
+//kill me pls :C ----
+    }
+
 }

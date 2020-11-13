@@ -33,6 +33,11 @@ class Order
      */
     private $user;
 
+    public function __construct()
+    {
+        $this->setPlacedAt(new \DateTime());
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -48,6 +53,7 @@ class Order
         $this->placed_at = $placed_at;
 
         return $this;
+
     }
 
     public function getSchool(): ?School
@@ -73,4 +79,5 @@ class Order
 
         return $this;
     }
+
 }

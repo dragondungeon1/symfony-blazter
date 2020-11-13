@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Symfony\Component\HttpFoundation\Session;
 /**
  * @Route("/order")
  */
@@ -55,6 +55,7 @@ class OrderController extends AbstractController
     {
         return $this->render('order/show.html.twig', [
             'order' => $order,
+
         ]);
     }
 
@@ -91,4 +92,20 @@ class OrderController extends AbstractController
 
         return $this->redirectToRoute('order_index');
     }
+
+//    public function order($schooldID)
+//    {
+//        $Order = new Order();
+//        $user = $this->getUser();
+//        $Order->setUser($user);
+//
+//        $Order->setUser($user->getId());
+//        $Order->setSchool($schooldID);
+//
+//        $em = $this->getDoctrine()->getManager();
+//        $em->persist($Order);
+//        $em->flush();
+//
+//        return $this->render('order/new.html.twig');
+//    }
 }

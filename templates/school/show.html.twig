@@ -3,6 +3,7 @@
 {% block title %}School{% endblock %}
 
 {% block body %}
+
     <h1>School</h1>
 
     <table class="table">
@@ -19,6 +20,18 @@
                 <th>Created_at</th>
                 <td>{{ school.createdAt ? school.createdAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
+            <tr>
+                <th>Tuition</th>
+                <td>
+                    {% if school.CountryID == 'USA' %}$
+                    {% elseif school.CountryID == 'UK' %}£
+                    {% elseif school.CountryID == 'EU' %}€
+                    {% endif %}
+                    {{ valuta(school.CountryID, school.Tuitition)}}
+                </td>
+            </tr>
+        <tr>
+
         </tbody>
     </table>
 

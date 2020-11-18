@@ -44,36 +44,46 @@ class CartController extends AbstractController
         ]);
 
     }
+
+    /**
+     * @Route("/drum/{id}", name="drum")
+     * @param School $school
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function add(School $school){
+        $this->session->set('school' , $school->getId());
+        $schools[] = $school;
+        return $this->render('order/jmr.html.twig' , [
+            'schools' => $schools,
+        ]);
+
+    }
+
 // this is the payment function
     /**
      * @Route("/spa", name="spa")
      */
     public function order()
     {
+//        dd($this->session->get('School'));
         $Order = new Order();
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
         $user =  $em->getRepository(User::class)->find($user->getId());
+        $school =  $em->getRepository(School::class)->find($this->session->get('school'));
 
         $Order->setUser($user);
-        $Order->setSchool($this->session->get('school'));
+//        $Order->setSchool($this->session->get('school'));
+        $Order->setSchool($school);
 
 //        $form = $this->createForm(OrderType::class, $Order);    //please check this again
 //        $form->handleRequest($request);
-
         $em->persist($Order);
         $em->flush();
 
-        return $this->render('order/new.html.twig', [
-
+        return $this->render('order/spa.html.twig', [
+            'order' => $Order
         ]);
-    }
-    /**
-     * @Route("/check", name="school")
-     */
-    public function add(School $school){
-            $this->session->set('School' , $school);
-//kill me pls :C ----
     }
 
 }

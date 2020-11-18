@@ -1,16 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Order{% endblock %}
 
 {% block body %}
-    <h1>Create new Order</h1>
+    <h1>Hello spa</h1>
 
 
-{#    his friendly message is coming from:#}
-{#    <ul>#}
-{#        <li>Your controller at <code><a href="{{ 'C:/school/htdocs/blazter/expert2/src/Controller/CartController.php'|file_link(0) }}">src/Controller/CartController.php</a></code></li>#}
-{#        <li>Your template at <code><a href="{{ 'C:/school/htdocs/blazter/expert2/templates/cart/index.html.twig'|file_link(0) }}">templates/cart/index.html.twig</a></code></li>#}
-{#    </ul>#}
+    {#    his friendly message is coming from:#}
+    {#    <ul>#}
+    {#        <li>Your controller at <code><a href="{{ 'C:/school/htdocs/blazter/expert2/src/Controller/CartController.php'|file_link(0) }}">src/Controller/CartController.php</a></code></li>#}
+    {#        <li>Your template at <code><a href="{{ 'C:/school/htdocs/blazter/expert2/templates/cart/index.html.twig'|file_link(0) }}">templates/cart/index.html.twig</a></code></li>#}
+    {#    </ul>#}
 
     <table class="table">
         <thead>
@@ -22,12 +21,12 @@
         </tr>
         </thead>
         <tbody>
-        {% for school in schools %}
+        {% for order in order %}
             <tr>
-                <td>{{ school.id }}</td>
-                <td>{{ school.name }}</td>
+                <td>{{ order.id }}</td>
+                <td>{{ order.name }}</td>
                 <td>
-                    <a href="{{ path('school_show', {'id': school.id}) }}">show</a>
+                    <a href="{{ path('school_show', {'id': order.id}) }}">show</a>
                     <a href="{{ path('order_edit', {'id': order.id}) }}">edit</a>
                 </td>
                 {#                <td><a href="{{ path('cart', {'id':order.id}) }}"></a><button class="btn-warning">order</button></td>#}

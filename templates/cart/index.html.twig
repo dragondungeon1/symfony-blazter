@@ -52,7 +52,7 @@
                     {% elseif school.CountryID == 'EU' %}€
                     {% endif %}
                     {{ valuta(school.CountryID, school.Tuitition)}}</td>
-                <td><a href="{{ path('check', {'id': school.id}) }}"><button class="btn-primary">order</button></a></td>
+                <td><a href="{{ path('drum', {'id': school.id}) }}"><button class="btn-primary">order</button></a></td>
 
             </tr>
         {% else %}

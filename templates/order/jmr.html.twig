@@ -1,16 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Order{% endblock %}
 
 {% block body %}
-    <h1>Create new Order</h1>
-
-
-{#    his friendly message is coming from:#}
-{#    <ul>#}
-{#        <li>Your controller at <code><a href="{{ 'C:/school/htdocs/blazter/expert2/src/Controller/CartController.php'|file_link(0) }}">src/Controller/CartController.php</a></code></li>#}
-{#        <li>Your template at <code><a href="{{ 'C:/school/htdocs/blazter/expert2/templates/cart/index.html.twig'|file_link(0) }}">templates/cart/index.html.twig</a></code></li>#}
-{#    </ul>#}
+    <h1>Hello jmr</h1>
 
     <table class="table">
         <thead>
@@ -19,6 +11,8 @@
             <th>Placed_at</th>
             <th>actions</th>
             <th>Tuition</th>
+            <th>School ID</th>
+            <th>buy</th>
         </tr>
         </thead>
         <tbody>
@@ -28,9 +22,15 @@
                 <td>{{ school.name }}</td>
                 <td>
                     <a href="{{ path('school_show', {'id': school.id}) }}">show</a>
-                    <a href="{{ path('order_edit', {'id': order.id}) }}">edit</a>
+                    <a href="{{ path('order_edit', {'id': school.id}) }}">edit</a>
                 </td>
-                {#                <td><a href="{{ path('cart', {'id':order.id}) }}"></a><button class="btn-warning">order</button></td>#}
+                <td>{% if school.CountryID == 'USA' %}$
+                    {% elseif school.CountryID == 'UK' %}£
+                    {% elseif school.CountryID == 'EU' %}€
+                    {% endif %}
+                    {{ valuta(school.CountryID, school.Tuitition)}}</td>
+                <td>{{ school.CountryID }}</td>
+                <td><a href="{{ path('spa', {'id':school.id}) }}"><button class="btn-warning">koop</button></a></td>
             </tr>
         {% else %}
             <tr>

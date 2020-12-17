@@ -39,5 +39,6 @@ security:
          - { path: /default, roles:  [IS_AUTHENTICATED_FULLY]}
          - { path: ^/niveau, roles:  ROLE_ADMIN}
          - { path: ^/school, roles:  ROLE_USER}
+         - { path: ^/cart, roles: [IS_AUTHENTICATED_FULLY] }
 
 

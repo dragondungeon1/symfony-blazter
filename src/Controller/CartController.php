@@ -84,6 +84,7 @@ class CartController extends AbstractController
         return $this->render('order/spa.html.twig', [
             'order' => $Order
         ]);
+
     }
 
 }
